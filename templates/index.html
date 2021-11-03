@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <header class="masthead">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-20 mx-auto">
+                    <div class="site-heading">
+                        <h2 class=" site-heading my-4 mt-3 text-black"><strong>
+                            Welcome to the Blog!
+                        </strong></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-20 mt-3 mx-auto" style="width: 50rem;">
+                {% for post in post_list %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                {{ post.title }} - {{ post.author}} 
+                            </h2>
+                            <p class="card-text text-muted h6">
+                                {{ post.created_on }}  
+                            </p>
+
+                            <p class="card-text">
+                                {{post.content|safe|slice:":200" }}
+                            </p>
+                            <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">
+                                Read More
+                            </a>
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    
+{%endblock%}
